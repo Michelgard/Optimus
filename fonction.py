@@ -8,15 +8,15 @@ import requests
 #Fonction analyse retour écoute micro en JSON
 def texte_json(js, niveauConfidence):
     if js['_text'] == None:
-        #play("error.wav")
-        #play("Je-ne-comprends-pas.wav")
+        play("error.wav")
+        play("Je-ne-comprends-pas.wav")
         print "Je-ne-comprends-pas pas de texte"
         return False
     else:
         if js['entities'] == {}:
-            #play("error.wav")
-            #play("Je-ne-trouve-pas-de-correspondance.wav")
-            #fonction.parole(js['_text'])
+            play("error.wav")
+            play("Je-ne-trouve-pas-de-correspondance.wav")
+            parole(js['_text'])
             print "Je-ne-trouve-pas-de-correspondance a " + js['_text']
             return False
         else:
@@ -27,9 +27,9 @@ def texte_json(js, niveauConfidence):
             confidence = value[0]['confidence']
             intent = str(value[0]['value'])
             if confidence < niveauConfidence: #niveau de confidence pour va$
-                #play("error.wav")
-                #fonction.play("Je-ne-comprends-pas-la-commande.wav")
-                #fonction.parole(texte)
+                play("error.wav")
+                play("Je-ne-comprends-pas-la-commande.wav")
+                parole(texte)
                 print "Je-ne-comprends-pas-la-commande confidence < a " + str(niveauConfidence)
                 return False
             else:
@@ -49,7 +49,7 @@ def play(fichier):
     timeout.run(cmd,shell = True)
 
 def wit(token_wit, niveauConfidence):
-    token_wit = "MWUCLNWIHPFPHEAKAN5OTJFMB2MLMRWX" #
+    #token_wit = "MWUCLNWIHPFPHEAKAN5OTJFMB2MLMRWX" #
     #token_wit = "OHQ3X34NGICRFIRLUIBXRIKYD3G72RQB"
 
     headers = {'content-type' : 'audio/wav',"Authorization":"Bearer " + token_wit }
