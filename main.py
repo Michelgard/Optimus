@@ -17,8 +17,8 @@ fonction.play("Bonjour-je-suis-Optimus.wav") #message au lancement de l'appli
 fin = False #si fin = True arret de l'appli
 while (not fin):
     #attente mot magique
-    #snow = Snowboy('snowboy/resources/optimus.pmdl', sensibiliteSnowboy)
-    #snow.detection()
+    snow = Snowboy('snowboy/resources/optimus.pmdl', sensibiliteSnowboy)
+    snow.detection()
 
     """enregistrement des commandes
        trois temps d'enregistrement maxi avec un timeout de 10 secondes
@@ -28,7 +28,7 @@ while (not fin):
     while  retourRecord != 0 and i < 3: 
         retourRecord = fonction.record()
         i = i + 1
-        retourRecord = 0
+        #retourRecord = 0
 
     if retourRecord != 0: #si enregistrement HS
     	fonction.play("error.wav")
