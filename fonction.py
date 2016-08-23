@@ -26,7 +26,7 @@ def texte_json(js, niveauConfidence):
             entities = str(key)
             confidence = value[0]['confidence']
             intent = str(value[0]['value'])
-            if confidence < niveauConfidence: #niveau de confidence pour va$
+            if confidence < niveauConfidence: #niveau de confidence pour validation
                 play("error.wav")
                 play("Je-ne-comprends-pas-la-commande.wav")
                 parole(texte)
@@ -40,7 +40,7 @@ def parole(texte):
     timeout.run(cmd,shell = True)
 
 def record():
-    cmd = 'rec -V1 -r 16000 -c 1 -b 16 -e signed-integer --endian little jarvis-record.wav silence 1 2 12% 1 0:00:01 12% trim 0 10'
+    cmd = 'rec -V1 -r 16000 -c 1 -b 16 -e signed-integer --endian little optimus-record.wav silence 1 2 12% 1 0:00:01 12% trim 0 10'
     retour, aa, bb = timeout.run(cmd,shell = True, timeout = 10)
     return retour
 
@@ -53,8 +53,8 @@ def wit(token_wit, niveauConfidence):
     #token_wit = "OHQ3X34NGICRFIRLUIBXRIKYD3G72RQB"
 
     headers = {'content-type' : 'audio/wav',"Authorization":"Bearer " + token_wit }
-    #audio = open('./jarvis-record.wav','rb').read()
-    audio = open('./testSon/allume-lustre-chambre.wav','rb').read()
+    audio = open('./optimus.wav','rb').read()
+    "audio = open('./testSon/allume-lustre-chambre.wav','rb').read()
 
     r=requests.post('https://api.wit.ai/speech?v=20160526',data=audio,headers=headers)
 
